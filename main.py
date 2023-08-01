@@ -33,7 +33,7 @@ def select_llm() -> Union[ChatOpenAI, LlamaCpp]:
     n_gpu_layers = 40  # Change this value based on your model and your GPU VRAM pool.
     n_batch = 8  # Should be between 1 and n_ctx, consider the amount of VRAM in your GPU.
     return LlamaCpp(
-        model_path="/home/mefae1/llm/chinese-llama-2-7b/gml-model-q4_0.bin",
+        model_path="/path_to_model/chinese-alpaca-2-7b/gml-model-q4_0.bin",
         n_gpu_layers=n_gpu_layers,
         n_batch=n_batch,
         callback_manager=callback_manager,
