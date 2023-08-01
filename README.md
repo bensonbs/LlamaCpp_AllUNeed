@@ -50,6 +50,7 @@ wget https://developer.download.nvidia.com/compute/cuda/12.2.0/local_installers/
 sudo sh cuda_12.2.0_535.54.03_linux.run
 sudo apt install nvidia-cuda-toolkit
 
+```
 #### 安裝CUBLAS
 ```
 mkdir build
