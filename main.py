@@ -27,25 +27,19 @@ def init_messages() -> None:
         ]
         st.session_state.costs = []
 
-
+@st.cache_resource
 def select_llm() -> Union[ChatOpenAI, LlamaCpp]:
-    model_name = st.sidebar.radio("Choose LLM:",
-                                  (["llama-2-7b-chat.ggmlv3.q2_K"]))
-    temperature = st.sidebar.slider("Temperature:", min_value=0.0,
-                                    max_value=1.0, value=0.0, step=0.01)
-    if model_name.startswith("gpt-"):
-        return ChatOpenAI(temperature=temperature, model_name=model_name)
-    elif model_name.startswith("llama-2-"):
-        callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
-        n_gpu_layers = 40  # Change this value based on your model and your GPU VRAM pool.
-        n_batch = 8  # Should be between 1 and n_ctx, consider the amount of VRAM in your GPU.
-        return LlamaCpp(
-            model_path="/home/sung/llm/chinese-alpaca-2-7b/gml-model-q4_0.bin",
-            n_gpu_layers=n_gpu_layers,
-            n_batch=n_batch,
-            callback_manager=callback_manager,
-            verbose=True,
-        )
+    callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
+    n_gpu_layers = 40  # Change this value based on your model and your GPU VRAM pool.
+    n_batch = 8  # Should be between 1 and n_ctx, consider the amount of VRAM in your GPU.
+    return LlamaCpp(
+        model_path="/home/mefae1/llm/chinese-llama-2-7b/gml-model-q4_0.bin",
+        n_gpu_layers=n_gpu_layers,
+        n_batch=n_batch,
+        callback_manager=callback_manager,
+        verbose=True,
+        input={"temperature": 0.0, "max_length": 2048},
+    )
 
 
 def get_answer(llm, messages) -> tuple[str, float]:
