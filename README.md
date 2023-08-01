@@ -69,7 +69,7 @@ pip install langchain
 ```
 
 ## 使用方法
-### 依照需求修改`main.py`中的`LlamCpp`
+### 依照需求修改`app.py`中的`LlamCpp`
 
 **CPU版本**
 ```
@@ -95,7 +95,7 @@ LlamaCpp(
 
 ### 啟動聊天UI
 ```
-streamlit run main.py
+streamlit run app.py
 ```
 
 ### RetrievalQA範例
