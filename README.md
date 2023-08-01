@@ -1,5 +1,7 @@
 # LlamaCpp_AllUNeed
 
+![DEMO](Demo.png)
+
 - 2023/8/1 新增qa_test.ipynb，RetrievalQA範例
 - 
 ## 系統需求: 
@@ -95,8 +97,6 @@ LlamaCpp(
 ```
 streamlit run main.py
 ```
-
-![DEMO](Demo_UI.png)
 
 ### RetrievalQA範例
 - *question : LK-99 為什麼只能提供理論上的支持*
