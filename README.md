@@ -42,11 +42,16 @@ pip install  llama-cpp-python
 pip install langchain
 ```
 
-### CPU版本
+### GPU版本
+
+**安裝nvcc**
 ```
 wget https://developer.download.nvidia.com/compute/cuda/12.2.0/local_installers/cuda_12.2.0_535.54.03_linux.run
 sudo sh cuda_12.2.0_535.54.03_linux.run
 sudo apt install nvidia-cuda-toolkit
+
+**安裝CUBLAS**
+```
 mkdir build
 cd build
 cmake .. -DLLAMA_CUBLAS=ON
