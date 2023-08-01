@@ -1,21 +1,22 @@
 # app.py
 from typing import List, Union
-
 from langchain.callbacks import get_openai_callback
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import (SystemMessage, HumanMessage, AIMessage)
 from langchain.llms import LlamaCpp
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-import streamlit as st
 
+import streamlit as st
+from opencc import OpenCC
+
+cc = OpenCC('s2twp')
 
 def init_page() -> None:
     st.set_page_config(
-        page_title="Personal ChatGPT"
+        page_title=" Alpaca-2"
     )
-    st.header("Personal ChatGPT")
-    st.sidebar.title("Options")
+    st.header(" Alpaca-2")
 
 
 def init_messages() -> None:
@@ -33,7 +34,7 @@ def select_llm() -> Union[ChatOpenAI, LlamaCpp]:
     n_gpu_layers = 40  # Change this value based on your model and your GPU VRAM pool.
     n_batch = 8  # Should be between 1 and n_ctx, consider the amount of VRAM in your GPU.
     return LlamaCpp(
-        model_path="/path_to_model/chinese-alpaca-2-7b/gml-model-q4_0.bin",
+        model_path="/home/sung/llm/chinese-alpaca-2-7b/gml-model-q4_0.bin",
         n_gpu_layers=n_gpu_layers,
         n_batch=n_batch,
         callback_manager=callback_manager,
@@ -48,7 +49,9 @@ def get_answer(llm, messages) -> tuple[str, float]:
             answer = llm(messages)
         return answer.content, cb.total_cost
     if isinstance(llm, LlamaCpp):
-        return llm(llama_v2_prompt(convert_langchainschema_to_dict(messages))), 0.0
+        if len(messages) > 3:
+            messages = [messages[0]] + messages[-3:]
+        return cc.convert(llm(llama_v2_prompt(convert_langchainschema_to_dict(messages)))), 0.0
 
 
 def find_role(message: Union[SystemMessage, HumanMessage, AIMessage]) -> str:
@@ -110,11 +113,25 @@ def llama_v2_prompt(messages: List[dict]) -> str:
 
 
 def main() -> None:
-
     init_page()
+    area = [st.sidebar.empty() for i in range(3)]
+    st.sidebar.markdown("## Options")
     llm = select_llm()
     init_messages()
-
+    
+    area[0].markdown("""
+    # 簡介
+     **本專案基於`Llama-2`開發，`Alpaca-2`指令精調大模型**。 
+     **這些模型在原版`Llama-2`的基礎上擴充並優化了中文詞表**。
+     **提升了中文基礎語義和指令理解能力**。 
+    """)
+    area[2].markdown(" **Source Code** [Github](https://github.com/bensonbs/LlamaCpp_AllUNeed)")
+    area[2].markdown("""
+    **reference:**
+    - [Chinese-LLaMA-Alpaca](https://github.com/ymcui/Chinese-LLaMA-Alpaca)
+    - [llama.cpp](https://github.com/ggerganov/llama.cpp)
+    - [streamlit Chat UI](https://medium.com/@daydreamersjp/implementing-locally-hosted-llama2-chat-ui-using-streamlit-53b181651b4e)
+    """)
     # Supervise user input
     if user_input := st.chat_input("Input your question!"):
         st.session_state.messages.append(HumanMessage(content=user_input))
@@ -133,11 +150,6 @@ def main() -> None:
             with st.chat_message("user"):
                 st.markdown(message.content)
 
-    costs = st.session_state.get("costs", [])
-    st.sidebar.markdown("## Costs")
-    st.sidebar.markdown(f"**Total cost: ${sum(costs):.5f}**")
-    for cost in costs:
-        st.sidebar.markdown(f"- ${cost:.5f}")
 
 
 # streamlit run app.py
