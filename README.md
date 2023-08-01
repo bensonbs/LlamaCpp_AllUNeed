@@ -99,10 +99,9 @@ streamlit run main.py
 ![DEMO](Demo_UI.png)
 
 ### RetrievalQA範例
-
 - *question : LK-99 為什麼只能提供理論上的支持*
 - Docs: [南韓室溫超導體「LK-99」 美國家實驗室認證：理論上可行](https://news.ltn.com.tw/news/world/breakingnews/4382800)
-
+- template : 使用以下上下文來回答最後的問題。如果你不知道答案，就說你不知道，不要試圖編造答案。最多使用三個句子，並儘可能保持答案簡潔。{context}問題：{question}有用的答案：
 
     `Llama2`
     ```
