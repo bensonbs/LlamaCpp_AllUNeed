@@ -32,9 +32,62 @@ python3 convert.py /path_to_model/chinese-alpaca-2-7b/
 ./quantize /path_to_model/chinese-alpaca-2-7b/ggml-model-f16.bin /path_to_model/chinese-alpaca-2-7b/gml-model-q4_0.bin q4_0
 ```
 
+## 套件安裝
+### CPU版本
+```
+pip install  llama-cpp-python
+```
+
+```
+pip install langchain
+```
+
+### CPU版本
+```
+wget https://developer.download.nvidia.com/compute/cuda/12.2.0/local_installers/cuda_12.2.0_535.54.03_linux.run
+sudo sh cuda_12.2.0_535.54.03_linux.run
+sudo apt install nvidia-cuda-toolkit
+mkdir build
+cd build
+cmake .. -DLLAMA_CUBLAS=ON
+cmake --build . --config Release
+CMAKE_ARGS="-DLLAMA_CUBLAS=on" FORCE_CMAKE=1 pip install --upgrade --force-reinstall llama-cpp-python --no-cache-dir
+```
+
+```
+pip install langchain
+```
+
 ## 使用方法
-- 請依照`LlamaCpp_AllUNeed.ipynb`教學建置CPU/GPU環境，與轉換模型權重。
-- 使用`streamlit run main.py`啟動你的Llama2中文版UI, and have fun!
+### 依照需求修改`main.py`中的`LlamCpp`
+
+**CPU版本**
+```
+llm = LlamaCpp(
+    model_path="/path_to_model/chinese-alpaca-2-7b/gml-model-q4_0.bin",
+    input={"temperature": 0.0, "max_length": 2048},
+    callback_manager=callback_manager,
+    verbose=True,
+)
+```
+
+**GPU版本**
+```
+LlamaCpp(
+        model_path="/path_to_model/chinese-alpaca-2-7b/gml-model-q4_0.bin",
+        n_gpu_layers=n_gpu_layers,
+        n_batch=n_batch,
+        callback_manager=callback_manager,
+        verbose=True,
+        input={"temperature": 0.0, "max_length": 2048},
+    )
+```
+
+### 啟動streamlit UI
+```
+streamlit run main.py
+```
+
 ![DEMO](Demo_UI.png)
 
 ref:
