@@ -22,12 +22,12 @@ python3 -m pip install -r requirements.txt
 └── llama.cpp
 ```
 
-### 模型精度轉換 pth -> f16
+### 模型型態轉換 pth -> f16
 ```
 python3 convert.py /path_to_model/chinese-alpaca-2-7b/
 ```
 
-#### 模型精度轉換 f16 -> q4
+### 模型精度轉換 f16 -> q4
 ```
 ./quantize /path_to_model/chinese-alpaca-2-7b/ggml-model-f16.bin /path_to_model/chinese-alpaca-2-7b/gml-model-q4_0.bin q4_0
 ```
@@ -44,13 +44,13 @@ pip install langchain
 
 ### GPU版本
 
-**安裝nvcc**
+#### 安裝nvcc
 ```
 wget https://developer.download.nvidia.com/compute/cuda/12.2.0/local_installers/cuda_12.2.0_535.54.03_linux.run
 sudo sh cuda_12.2.0_535.54.03_linux.run
 sudo apt install nvidia-cuda-toolkit
 
-**安裝CUBLAS**
+#### 安裝CUBLAS
 ```
 mkdir build
 cd build
