@@ -1,56 +1,42 @@
 import os
+import argparse
 import streamlit as st
 from langchain.llms import LlamaCpp
-from langchain.vectorstores import Chroma
+from langchain.vectorstores import FAISS
 from langchain.chains import RetrievalQA
-from langchain.embeddings import LlamaCppEmbeddings
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.embeddings import LlamaCppEmbeddings, OpenAIEmbeddings
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain.callbacks import StreamlitCallbackHandler
-from langchain.llms import LlamaCpp
-model_path = "/home/sung/llm/chinese-alpaca-2-7b/gml-model-q4_0.bin"
-
-from glob import glob 
-from langchain.document_loaders import PyPDFLoader
-
+from langchain.chat_models import ChatOpenAI
 
 @st.cache_resource
-def get_vectorstore(paths):
-    data = []
-    for path in glob(paths):
-        data += PyPDFLoader(path).load()
-    # data += WebBaseLoader("https:/xxxx").load()
+def get_vectorstore(type):
+    index_path = f"./faiss/{type}_index"
+    return FAISS.load_local(index_path, embeddings=load_emb(type))
 
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size = 1024, chunk_overlap = 52 ,length_function = len)
-    all_splits = text_splitter.split_documents(data)
+def load_emb(type):
+    return LlamaCppEmbeddings(model_path=args.model_path,n_ctx=2048, f16_kv=True) if type == "llama" else OpenAIEmbeddings()
 
-    # LlamaCppEmbeddings
-    vectorstore = Chroma.from_documents(documents=all_splits, embedding=load_emb())
-
-    return vectorstore
-
-def load_emb():
-    return LlamaCppEmbeddings(model_path="/home/mefae1/llm/chinese-alpaca-2-7b/ggml-model-q4_0.bin",
-            n_gpu_layers=35,
-            n_batch=128,
-            n_ctx=2048,
-            f16_kv=True
-        )
-    
 @st.cache_resource
-def load_model():
-    llm = LlamaCpp(
-            model_path="/home/mefae1/llm/chinese-alpaca-2-7b/ggml-model-q4_0.bin",
-            n_gpu_layers=35,
-            n_batch=128,
-            verbose=True,
-            n_ctx=2048,
-            input={"temperature": 0.0, "max_length": 2048},
-        )
-    return llm
+def load_model(type):
+    return LlamaCpp(model_path=args.model_path, n_gpu_layers=35, n_batch=512, verbose=True, n_ctx=2048, input={"temperature": 0.0, "max_length": 2048}) if type == 'llama' else ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
 
 
+# Create the parser
+parser = argparse.ArgumentParser()
+
+# Add the arguments
+parser.add_argument('--model', type=str, default="llama", help="Specify the model to use for processing (default: 'llama'). Options: 'llama' or 'openai'.")
+parser.add_argument('--model-path', type=str, default="/home/sung/llm/chinese-alpaca-2-7b/gml-model-q4_0.bin", help="Specify the full path to the model file.")
+parser.add_argument('--embedding', type=str, default="openai", help="Choose the embeddings to use (default: 'openai'). Options: 'llama' or 'openai'.")
+parser.add_argument('--hyperlink', type=bool, default=True, help="Whether to include hyperlinks in the processed PDFs (default: True). Use 'False' to exclude hyperlinks.")
+
+# Parse the arguments
+args = parser.parse_args()
+
+# Parse the arguments
+args = parser.parse_args()
 template =  """
 使用以下文章來回答最後的問題。
 如果你不知道答案，就說你不知道，不要試圖編造答案。
@@ -59,13 +45,13 @@ template =  """
 簡潔的答案:
 """
 QA_CHAIN_PROMPT = PromptTemplate.from_template(template)
-llama = load_model()
-vectorstore = get_vectorstore('/home/mefae1/llm/docs/*')
+llama = load_model(args.model)
+vectorstore = get_vectorstore(type=args.embedding)
 # llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
 dics = {
-
+    
 }
-if prompt := st.chat_input("網家倉庫建物有幾坪?"):
+if prompt := st.chat_input("structure of LK-99"):
     with st.chat_message("user"):
         st.markdown(prompt)
     with st.chat_message("assistant"):
@@ -73,7 +59,7 @@ if prompt := st.chat_input("網家倉庫建物有幾坪?"):
             st_callback = StreamlitCallbackHandler(st.container())
             qa_chain = RetrievalQA.from_chain_type(
                 llama,
-                retriever=vectorstore.as_retriever(search_type = "similarity", search_kwargs = {"k" : 5}),
+                retriever=vectorstore.as_retriever(search_type = "similarity", search_kwargs = {"k" :3}),
                 chain_type_kwargs={"prompt": QA_CHAIN_PROMPT},
                 return_source_documents=True,
                 callbacks=[st_callback]
@@ -86,5 +72,8 @@ if prompt := st.chat_input("網家倉庫建物有幾坪?"):
                     basename = os.path.basename(link)
                     name = dics[basename] if basename in dics else basename
                     st.write(f'`{ref.page_content}`')
-                    st.write(f'來源: [{name}](http://10.96.212.243:8502/pdf/{basename})')
+                    if args.hyperlink:
+                        st.write(f'來源: [{name}](http://1.34.223.220:10010/pdf/{basename})')
+                    else:
                     
+                        st.write(f'來源: {name}')
