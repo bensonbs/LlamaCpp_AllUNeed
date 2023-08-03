@@ -10,7 +10,7 @@ streamlit run qa.py -- --model <model_name> --model-path <model_path> --pdf-path
 
 - `model`：指定用於處理的模型（默認：'llama'）。選項：'llama'或'openai'。
 - `model-path`：指定模型文件的完整路徑。
-- `pdf-path`：指定要處理的PDF文件的路徑。您可以使用 '*' 處理目錄中的所有文件。
+- `pdf-path`：指定要處理的PDF文件的路徑。
 - `embedding`：選擇要使用的嵌入（默認：'openai'）。選項：'llama'或'openai'。
 - `hyperlink`：是否在處理的PDF中包含超鏈接（默認：True）。使用'False'排除超鏈接。
   <details><summary>hyperlink 小工具</summary>
