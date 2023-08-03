@@ -5,11 +5,11 @@
 - [x] llama.cpp GPU 環境安裝教學
 
 ## 效果演示
-### LLama Chat UI [文檔](Alpaca-2_Chat.md)
+### Alpaca-2 Chat [文檔](Alpaca-2_Chat.md)
 **此專案提供一個 Streamlit 介面，讓你可以運行 `Alpaca-2` 與模型進行對話。**
 ![DEMO](Demo.png)
 
-### LLama QA UI [文檔](Retrieval_QA.md)
+### LangChain：Retrieval QA [文檔](Retrieval_QA.md)
 **LLama QA 非常適合處理大量的文檔，並根據這些文檔的內容提供即時的AI生成的答案。支援`Alpaca-2`與`OpenAI-GPT3.5`LLM模型與詞向量檢索**
 ![DEMO](QA_demo.png)
   
