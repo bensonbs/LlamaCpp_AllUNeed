@@ -17,18 +17,11 @@
 - UbuntuOS 22.04
 - GPU版本需使用Nvidia顯示卡且`vram > 6GB`
 
-## 安裝教學
+## 環境建置
 
-### llama.cpp 環境建置
-```
-git clone https://github.com/ggerganov/llama.cpp
-cd llama.cpp
-make
-python3 -m pip install -r requirements.txt
-```
+### 模型下載
 
-## 模型下載
-[傳送門](https://huggingface.co/ziqingyang/chinese-alpaca-2-7b)
+#### 模型下載[傳送門](https://huggingface.co/ziqingyang/chinese-alpaca-2-7b)
 ```
 .
 ├── LlamaCpp_AllUNeed
@@ -36,12 +29,21 @@ python3 -m pip install -r requirements.txt
 └── llama.cpp
 ```
 
-### 模型型態轉換 pth -> f16
+### 模型型態轉換
+
+#### llama.cpp 環境建置
+```
+git clone https://github.com/ggerganov/llama.cpp
+cd llama.cpp
+make
+python3 -m pip install -r requirements.txt
+```
+#### 模型型態轉換 pth -> f16
 ```
 python3 convert.py /path_to_model/chinese-alpaca-2-7b/
 ```
 
-### 模型精度轉換 f16 -> q4
+#### 模型精度轉換 f16 -> q4
 ```
 ./quantize /path_to_model/chinese-alpaca-2-7b/ggml-model-f16.bin /path_to_model/chinese-alpaca-2-7b/gml-model-q4_0.bin q4_0
 ```
