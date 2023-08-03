@@ -1,4 +1,6 @@
 # app.py
+import langchain
+langchain.debug = False
 from typing import List, Union
 from langchain.callbacks import get_openai_callback
 from langchain.chat_models import ChatOpenAI
@@ -6,17 +8,15 @@ from langchain.schema import (SystemMessage, HumanMessage, AIMessage)
 from langchain.llms import LlamaCpp
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-
 import streamlit as st
 from opencc import OpenCC
-
 cc = OpenCC('s2twp')
 
 def init_page() -> None:
     st.set_page_config(
-        page_title=" Alpaca-2"
+        page_title="🐪 Alpaca-2"
     )
-    st.header(" Alpaca-2")
+    st.header("🐪 Alpaca-2")
 
 
 def init_messages() -> None:
@@ -39,15 +39,12 @@ def select_llm() -> Union[ChatOpenAI, LlamaCpp]:
         n_batch=n_batch,
         callback_manager=callback_manager,
         verbose=True,
+        n_ctx=2048,
         input={"temperature": 0.0, "max_length": 2048},
     )
 
 
 def get_answer(llm, messages) -> tuple[str, float]:
-    if isinstance(llm, ChatOpenAI):
-        with get_openai_callback() as cb:
-            answer = llm(messages)
-        return answer.content, cb.total_cost
     if isinstance(llm, LlamaCpp):
         if len(messages) > 3:
             messages = [messages[0]] + messages[-3:]
@@ -125,7 +122,10 @@ def main() -> None:
      **這些模型在原版`Llama-2`的基礎上擴充並優化了中文詞表**。
      **提升了中文基礎語義和指令理解能力**。 
     """)
-    area[2].markdown(" **Source Code** [Github](https://github.com/bensonbs/LlamaCpp_AllUNeed)")
+    area[1].markdown("""
+    - **Source Code** [Github](https://github.com/bensonbs/LlamaCpp_AllUNeed)
+    - **weight 4bit** [Link](https://drive.google.com/file/d/1bk2-n2fncZ8XSg_G6PIGfhZMqghfn482/view?usp=sharing)
+    """)
     area[2].markdown("""
     **reference:**
     - [Chinese-LLaMA-Alpaca](https://github.com/ymcui/Chinese-LLaMA-Alpaca)
