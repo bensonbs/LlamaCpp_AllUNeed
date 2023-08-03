@@ -18,11 +18,11 @@ python emb.py --pdf-path path/to/*.pdf
 **注意:選用openai embedding 需添加環境變數 `export OPENAI_API_KEY=`**
 ### 啟動 Retrieval QA
 ```bash
-streamlit run qa.py -- --model <model_name> --model-path <model_path> --pdf-path <pdf_path> --embedding <embedding> --hyperlink <bool> --cache <bool>
+streamlit run qa.py -- --model <model_name> --model-path <model_path> --embedding <embedding> --hyperlink <bool>
 ```
 
 - `model`：指定用於處理的模型（默認：'llama'）。選項：'llama'或'openai'。
-- `model-path`：指定模型文件的完整路徑。
+- `model-path`：指定模型文件的完整路徑。(使用openai model與embedding可略過)
 - `embedding`：選擇要使用的嵌入（默認：'openai'）。選項：'llama'或'openai'。
 - `hyperlink`：是否在處理的PDF中包含超鏈接（默認：True）。使用'False'排除超鏈接。
   <details><summary>hyperlink 小工具</summary>
