@@ -1,7 +1,8 @@
 # LlamaCpp_AllUNeed
 
-- 2023/8/3 新增qa.py RetrievalQA with streamlit ui 
-- 2023/8/1 新增qa_test.ipynb，RetrievalQA範例
+- [x] LLama QA UI
+- [x] LLama Chat UI
+- [x] llama.cpp GPU 環境安裝教學
 
 ## 效果演示
 ### LLama Chat UI [文檔](Alpaca-2_Chat.md)
