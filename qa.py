@@ -42,7 +42,7 @@ template =  """
 如果你不知道答案，就說你不知道，不要試圖編造答案。
 文章: {context}
 問題:{question}
-簡潔的答案:
+答案:
 """
 QA_CHAIN_PROMPT = PromptTemplate.from_template(template)
 llama = load_model(args.model)
@@ -73,7 +73,7 @@ if prompt := st.chat_input("structure of LK-99"):
                     name = dics[basename] if basename in dics else basename
                     st.write(f'`{ref.page_content}`')
                     if args.hyperlink:
-                        st.write(f'來源: [{name}](http://1.34.223.220:10010/pdf/{basename})')
+                        st.write(f'來源: [{name}](http://0.0.0.0:8502/pdf/{basename})')
                     else:
                     
                         st.write(f'來源: {name}')
