@@ -7,7 +7,7 @@
 ### LLama Chat UI
 - ![DEMO](Demo.png)
 
-### LLama QA UI
+### LLama QA UI [文檔](Retrieval_QA.md)
 - ![DEMO](QA_demo.png)
   
 ## 系統需求: 
