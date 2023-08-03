@@ -5,7 +5,7 @@ LangChain：Retrieval QA是一款強大的工具，使用先進的機器學習�
 
 ## 如何使用
 
-### 詞向向量處理
+### 詞向量處理
 將PDF切成chunk建立詞向量並儲存，用於日後檢索使用，如有第一次使用或新增PDF文件時執行。
 ```bash
 python emb.py --pdf-path path/to/*.pdf
