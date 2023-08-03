@@ -5,7 +5,7 @@ LangChain：Retrieval QA是一款強大的工具，使用先進的機器學習�
 
 ## 如何使用
 ```bash
-streamlit run <script_name.py> -- --model <model_name> --model-path <model_path> --pdf-path <pdf_path> --embedding <embedding> --hyperlink <bool> --cache <bool>
+streamlit run qa.py -- --model <model_name> --model-path <model_path> --pdf-path <pdf_path> --embedding <embedding> --hyperlink <bool> --cache <bool>
 ```
 
 - `model`：指定用於處理的模型（默認：'llama'）。選項：'llama'或'openai'。
