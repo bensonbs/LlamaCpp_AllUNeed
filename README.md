@@ -9,8 +9,8 @@
 #### 此專案提供一個 Streamlit 介面，讓你可以運行 `Alpaca-2` 與模型進行對話。
 ![DEMO](Demo.png)
 
-### LangChain：Retrieval QA [文檔](Retrieval_QA.md)
-#### LangChain：Retrieval QA 非常適合處理大量的文檔，並根據這些文檔的內容提供即時的AI生成的答案。支援`Alpaca-2`與`OpenAI-GPT3.5`LLM模型與詞向量檢索
+### Alpaca-2：Retrieval QA [文檔](Retrieval_QA.md)
+#### Alpaca-2：Retrieval QA 非常適合處理大量的文檔，並根據這些文檔的內容提供即時的AI生成的答案。支援`Alpaca-2`與`OpenAI-GPT3.5`LLM模型與詞向量檢索
 ![DEMO](Demo_QA.png)
   
 ## 系統需求: 
