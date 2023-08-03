@@ -12,6 +12,7 @@ streamlit run qa.py -- --model <model_name> --model-path <model_path> --pdf-path
 - `model-path`：指定模型文件的完整路徑。您可以使用 '*' 處理目錄中的所有文件。
 - `pdf-path`：指定要處理的PDF文件的路徑。
 - `embedding`：選擇要使用的嵌入（默認：'openai'）。選項：'llama'或'openai'。
+- - `cache`：指定詞向量是否使用緩存。`True`將會使用faiss緩存，建議平時設置為`True`，PDF有新增或更動時設為`False`
 - `hyperlink`：是否在處理的PDF中包含超鏈接（默認：True）。使用'False'排除超鏈接。
   <details><summary>hyperlink 小工具</summary>
   <p>
@@ -36,8 +37,6 @@ streamlit run qa.py -- --model <model_name> --model-path <model_path> --pdf-path
   ```
   </p>
   </details>
-
-- `cache`：指定是否使用緩存。
 
 **注意:選用openai model或embedding 需添加環境變數 `export OPENAI_API_KEY=`**
 
