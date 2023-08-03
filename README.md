@@ -6,11 +6,11 @@
 
 ## 效果演示
 ### LLama Chat UI [文檔](Alpaca-2_Chat.md)
-**此專案提供一個 Streamlit 介面，讓你可以即時與Alpaca-2 模型進行對話。**
+**此專案提供一個 Streamlit 介面，讓你可以運行 `Alpaca-2` 與模型進行對話。**
 ![DEMO](Demo.png)
 
 ### LLama QA UI [文檔](Retrieval_QA.md)
-**使用先進的機器學習模型處理和嵌入PDF文檔。它使用最先進的模型，如LlamaCpp和OpenAI的ChatGPT來提取有價值的信息，並提供智能的、由AI驅動的對問題的回答。它還內建支援多種類型的嵌入，能夠實現高質量的文本數據表示。**
+**LLama QA 非常適合處理大量的文檔，並根據這些文檔的內容提供即時的AI生成的答案。支援`Alpaca-2`與`OpenAI-GPT3.5`LLM模型與詞向量檢索**
 ![DEMO](QA_demo.png)
   
 ## 系統需求: 
