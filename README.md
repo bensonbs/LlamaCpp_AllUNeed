@@ -10,7 +10,7 @@
 ![DEMO](Demo.png)
 
 ### LangChain：Retrieval QA [文檔](Retrieval_QA.md)
-**LLama QA 非常適合處理大量的文檔，並根據這些文檔的內容提供即時的AI生成的答案。支援`Alpaca-2`與`OpenAI-GPT3.5`LLM模型與詞向量檢索**
+**LangChain：Retrieval QA 非常適合處理大量的文檔，並根據這些文檔的內容提供即時的AI生成的答案。支援`Alpaca-2`與`OpenAI-GPT3.5`LLM模型與詞向量檢索**
 ![DEMO](QA_demo.png)
   
 ## 系統需求: 
