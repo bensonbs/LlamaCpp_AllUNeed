@@ -51,6 +51,7 @@ vectorstore = get_vectorstore(type=args.embedding)
 dics = {
     
 }
+st.write('# 🐪 Alpaca-2：Retrieval QA')
 if prompt := st.chat_input("structure of LK-99"):
     with st.chat_message("user"):
         st.markdown(prompt)
