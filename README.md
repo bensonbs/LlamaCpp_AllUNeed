@@ -1,9 +1,10 @@
 # LlamaCpp_AllUNeed
 
-![DEMO](Demo.png)
-
 - 2023/8/3 新增qa.py RetrievalQA with streamlit ui 
 - 2023/8/1 新增qa_test.ipynb，RetrievalQA範例
+
+## LLama Chat UI
+![DEMO](Demo.png)
   
 ## 系統需求: 
 UbuntuOS22.04 
