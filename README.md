@@ -73,38 +73,6 @@ CMAKE_ARGS="-DLLAMA_CUBLAS=on" FORCE_CMAKE=1 pip install --upgrade --force-reins
 pip install langchain
 ```
 
-## LLama Chat UI使用方法
-### 依照需求修改`app.py`中的`LlamCpp`
-
-**CPU版本**
-```
-llm = LlamaCpp(
-    model_path="/path_to_model/chinese-alpaca-2-7b/gml-model-q4_0.bin",
-    input={"temperature": 0.0, "max_length": 2048},
-    callback_manager=callback_manager,
-    verbose=True,
-)
-```
-
-**GPU版本**
-```
-LlamaCpp(
-        model_path="/path_to_model/chinese-alpaca-2-7b/gml-model-q4_0.bin",
-        n_gpu_layers=n_gpu_layers,
-        n_batch=n_batch,
-        callback_manager=callback_manager,
-        verbose=True,
-        input={"temperature": 0.0, "max_length": 2048},
-    )
-```
-
-### 啟動LLama Chat UI
-```
-streamlit run app.py
-```
-
-
-
 ref:
 - [Chinese-LLaMA-Alpaca](https://github.com/ymcui/Chinese-LLaMA-Alpaca)
 - [llama.cpp](https://github.com/ggerganov/llama.cpp)
