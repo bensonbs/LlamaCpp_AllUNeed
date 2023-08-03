@@ -2,8 +2,9 @@
 
 ![DEMO](Demo.png)
 
+- 2023/8/3 新增qa.py RetrievalQA with streamlit ui 
 - 2023/8/1 新增qa_test.ipynb，RetrievalQA範例
-- 
+  
 ## 系統需求: 
 UbuntuOS22.04 
 - GPU版本需使用Nvidia顯示卡且vram > 6GB
