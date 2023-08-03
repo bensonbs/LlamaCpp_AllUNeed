@@ -5,7 +5,7 @@ LangChain是一款強大的工具，使用先進的機器學習模型處理和�
 
 ## 如何使用
 ```bash
-python <script_name.py> --model <model_name> --model-path <model_path> --pdf-path <pdf_path> --embedding <embedding> --hyperlink <bool> --cache <bool>
+streamlit run <script_name.py> -- --model <model_name> --model-path <model_path> --pdf-path <pdf_path> --embedding <embedding> --hyperlink <bool> --cache <bool>
 ```
 
 - `model`：指定用於處理的模型（默認：'llama'）。選項：'llama'或'openai'。
@@ -15,7 +15,7 @@ python <script_name.py> --model <model_name> --model-path <model_path> --pdf-pat
 - `hyperlink`：是否在處理的PDF中包含超鏈接（默認：True）。使用'False'排除超鏈接。
 - `cache`：指定是否使用緩存。
 
-*選用openai model或embedding 需添加環境變數 `export OPENAI_API_KEY=`
+**注意:選用openai model或embedding 需添加環境變數 `export OPENAI_API_KEY=`**
 
 ##　內部運作原理
 LangChain首先加載並處理PDF文件，將文本分解成塊。然後使用指定的模型將這些塊嵌入。該應用程序創建所有嵌入的索引，可以保存在本地以供未來使用。
