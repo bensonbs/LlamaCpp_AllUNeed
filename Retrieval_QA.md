@@ -4,22 +4,33 @@ LangChain：Retrieval QA是一款強大的工具，使用先進的機器學習�
 此應用程序是用Python構建的，集成了多個庫，包括streamlit用於用戶友好的界面，PyPDFLoader用於文檔處理，FAISS用於向量之間的高效相似性搜索等。LangChain非常適合處理大量的文檔，並根據這些文檔的內容提供即時的AI生成的答案。
 
 ## 如何使用
+
+### 詞向向量處理
+將PDF切成chunk建立詞向量並儲存，用於日後檢索使用，如有第一次使用或新增PDF文件時執行。
+```bash
+python emb.py --pdf-path path/to/*.pdf
+```
+- `pdf-path`：指定要處理的PDF文件的路徑。您可以使用 '*' 處理目錄中的所有文件。
+- `embedding`：選擇要使用的嵌入（默認：'openai'）。選項：'llama'或'openai'。
+
+結束後將會儲存`faiss/openai_index`或是`faiss/llama_index`
+
+**注意:選用openai embedding 需添加環境變數 `export OPENAI_API_KEY=`**
+### 啟動 Retrieval QA
 ```bash
 streamlit run qa.py -- --model <model_name> --model-path <model_path> --pdf-path <pdf_path> --embedding <embedding> --hyperlink <bool> --cache <bool>
 ```
 
 - `model`：指定用於處理的模型（默認：'llama'）。選項：'llama'或'openai'。
-- `model-path`：指定模型文件的完整路徑。您可以使用 '*' 處理目錄中的所有文件。
-- `pdf-path`：指定要處理的PDF文件的路徑。
+- `model-path`：指定模型文件的完整路徑。
 - `embedding`：選擇要使用的嵌入（默認：'openai'）。選項：'llama'或'openai'。
-- - `cache`：指定詞向量是否使用緩存。`True`將會使用faiss緩存，建議平時設置為`True`，PDF有新增或更動時設為`False`
 - `hyperlink`：是否在處理的PDF中包含超鏈接（默認：True）。使用'False'排除超鏈接。
   <details><summary>hyperlink 小工具</summary>
   <p>
 
   **qa.py** 修改ip位置
   ```python
-  st.write(f'來源: [{name}](http://10.96.212.243:8502/pdf/{basename})')
+  st.write(f'來源: [{name}](http://0.0.0.0:8502/pdf/{basename})')
   ```
   **pdf.py** 利用Fastapi將PDF在指定網址中顯示，自行更改所需`port`與`path`
   ```python
