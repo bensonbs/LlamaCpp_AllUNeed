@@ -11,7 +11,7 @@
 
 ### LangChain：Retrieval QA [文檔](Retrieval_QA.md)
 #### LangChain：Retrieval QA 非常適合處理大量的文檔，並根據這些文檔的內容提供即時的AI生成的答案。支援`Alpaca-2`與`OpenAI-GPT3.5`LLM模型與詞向量檢索
-![DEMO](QA_demo.png)
+![DEMO](Demo_QA.png)
   
 ## 系統需求: 
 - UbuntuOS 22.04
