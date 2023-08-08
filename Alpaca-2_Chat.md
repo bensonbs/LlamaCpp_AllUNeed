@@ -15,7 +15,7 @@
 
 ## 使用
 
-### 依照需求修改`app.py`中的`LlamCpp`
+### 依照需求修改`chat.py`中的`LlamCpp`
 
 **CPU版本**
 ```
