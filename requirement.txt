@@ -1,0 +1,4 @@
+langchain
+streamlit
+opencc
+llama-cpp-python
