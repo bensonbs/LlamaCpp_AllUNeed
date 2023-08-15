@@ -18,7 +18,7 @@ def model_check():
     import os
     import gdown
 
-    output_path = './chinese-alpaca-2-7b/gml-model-q4_0.bin'
+    output_path = './chinese-alpaca-2-7b/ggml-model-q4_0.bin'
 
     # 只在檔案不存在時下載
     if not os.path.exists(output_path):
