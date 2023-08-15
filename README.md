@@ -11,7 +11,7 @@
 #### 使用 docker 啟動
 ```
 docker build -t alpaca-chat .
-docker run -p 8501:8501 alpaca-chat
+docker run --gpus all -p 8501:8501 alpaca-chat
 ``` 
 
 ### Alpaca-2: Retrieval QA [文檔](Retrieval_QA.md)
