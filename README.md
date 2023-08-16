@@ -8,6 +8,16 @@
 #### 此專案提供一個 Streamlit 介面，讓你可以運行 `Alpaca-2` 與模型進行對話。
 ![DEMO](Demo.png)
 
+#### 使用 docker 啟動
+```
+docker build -t alpaca-chat .
+docker run --gpus all -p 8501:8501 alpaca-chat
+```
+如果你已經有模型可以用`-v`設定共享目錄
+```
+docker run --gpus all -p 8501:8501 -v PATH/TO/LlamaCpp_AllUNeed/chinese-alpaca-2-7b:/LlamaCpp_AllUNeed/chinese-alpaca-2-7b --name alpaca-chat alpaca-chat
+```
+
 ### Alpaca-2: Retrieval QA [文檔](Retrieval_QA.md)
 #### Alpaca-2: Retrieval QA 的一個完美用例是用戶擁有大量的PDF文件，並在這些文檔中尋找特定的信息。而不是手動閱讀所有文件，用戶可以簡單地問AI獲取信息。AI將處理文檔，找到相關的信息，並提供簡潔的回答，所有這些都只需要幾秒鐘。
 ![DEMO](Demo_QA.png)

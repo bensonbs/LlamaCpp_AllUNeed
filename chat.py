@@ -10,7 +10,23 @@ from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 import streamlit as st
 from opencc import OpenCC
+from typing import Tuple
+
 cc = OpenCC('s2twp')
+
+def model_check():
+    import os
+    import gdown
+
+    output_path = './chinese-alpaca-2-7b/ggml-model-q4_0.bin'
+
+    # 只在檔案不存在時下載
+    if not os.path.exists(output_path):
+        # 確認並創建目錄
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+        # 下載檔案
+        gdown.download('https://drive.google.com/uc?id=1bk2-n2fncZ8XSg_G6PIGfhZMqghfn482', output_path, quiet=False)
 
 def init_page() -> None:
     st.set_page_config(
@@ -34,17 +50,17 @@ def select_llm() -> Union[ChatOpenAI, LlamaCpp]:
     n_gpu_layers = 40  # Change this value based on your model and your GPU VRAM pool.
     n_batch = 8  # Should be between 1 and n_ctx, consider the amount of VRAM in your GPU.
     return LlamaCpp(
-        model_path="/home/sung/llm/chinese-alpaca-2-7b/gml-model-q4_0.bin",
+        model_path="./chinese-alpaca-2-7b/ggml-model-q4_0.bin",
         n_gpu_layers=n_gpu_layers,
         n_batch=n_batch,
         callback_manager=callback_manager,
         verbose=True,
         n_ctx=2048,
-        input={"temperature": 0.0, "max_length": 2048},
+        # input={"temperature": 0.0, "max_length": 2048},
     )
 
 
-def get_answer(llm, messages) -> tuple[str, float]:
+def get_answer(llm, messages) -> Tuple[str, float]:
     if isinstance(llm, LlamaCpp):
         if len(messages) > 3:
             messages = [messages[0]] + messages[-3:]
@@ -111,6 +127,7 @@ def llama_v2_prompt(messages: List[dict]) -> str:
 
 def main() -> None:
     init_page()
+    model_check()
     area = [st.sidebar.empty() for i in range(3)]
     st.sidebar.markdown("## Options")
     llm = select_llm()
