@@ -1,4 +1,6 @@
 # LlamaCpp_AllUNeed
+Road Map
+- [x] 支持 Docker 環境
 - [ ] Alpaca-2: Text summary
 - [x] Alpaca-2: Retrieval QA
 - [x] Alpaca-2: Chat
