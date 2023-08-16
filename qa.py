@@ -15,12 +15,13 @@ def get_vectorstore(type):
     index_path = f"./faiss/{type}_index"
     return FAISS.load_local(index_path, embeddings=load_emb(type))
 
+@st.cache_resource
 def load_emb(type):
     return LlamaCppEmbeddings(model_path=args.model_path,n_ctx=2048, f16_kv=True) if type == "llama" else OpenAIEmbeddings()
 
 @st.cache_resource
 def load_model(type):
-    return LlamaCpp(model_path=args.model_path, n_gpu_layers=35, n_batch=512, verbose=True, n_ctx=2048, input={"temperature": 0.0, "max_length": 2048}) if type == 'llama' else ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
+    return LlamaCpp(model_path=args.model_path, n_gpu_layers=43, n_batch=512, verbose=True, n_ctx=2048) if type == 'llama' else ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
 
 
 # Create the parser
@@ -28,9 +29,9 @@ parser = argparse.ArgumentParser()
 
 # Add the arguments
 parser.add_argument('--model', type=str, default="llama", help="Specify the model to use for processing (default: 'llama'). Options: 'llama' or 'openai'.")
-parser.add_argument('--model-path', type=str, default="/home/sung/llm/chinese-alpaca-2-7b/gml-model-q4_0.bin", help="Specify the full path to the model file.")
-parser.add_argument('--embedding', type=str, default="openai", help="Choose the embeddings to use (default: 'openai'). Options: 'llama' or 'openai'.")
-parser.add_argument('--hyperlink', type=bool, default=True, help="Whether to include hyperlinks in the processed PDFs (default: True). Use 'False' to exclude hyperlinks.")
+parser.add_argument('--model-path', type=str, default="./chinese-alpaca-2-7b/ggml-model-q4_0.bin", help="Specify the full path to the model file.")
+parser.add_argument('--embedding', type=str, default="llama", help="Choose the embeddings to use (default: 'openai'). Options: 'llama' or 'openai'.")
+parser.add_argument('--hyperlink', type=bool, default=False, help="Whether to include hyperlinks in the processed PDFs (default: True). Use 'False' to exclude hyperlinks.")
 
 # Parse the arguments
 args = parser.parse_args()
