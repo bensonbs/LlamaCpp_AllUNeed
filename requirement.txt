@@ -1,5 +1,6 @@
-langchain
 streamlit
 opencc
 llama-cpp-python
+langchain==0.0.248
 gdown
+pypdf

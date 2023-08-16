@@ -45,9 +45,9 @@ def init_messages() -> None:
         st.session_state.costs = []
 
 @st.cache_resource
-def select_llm() -> Union[ChatOpenAI, LlamaCpp]:
+def load_llm() -> Union[ChatOpenAI, LlamaCpp]:
     callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
-    n_gpu_layers = 40  # Change this value based on your model and your GPU VRAM pool.
+    n_gpu_layers = 43  # Change this value based on your model and your GPU VRAM pool.
     n_batch = 8  # Should be between 1 and n_ctx, consider the amount of VRAM in your GPU.
     return LlamaCpp(
         model_path="./chinese-alpaca-2-7b/ggml-model-q4_0.bin",
@@ -56,7 +56,6 @@ def select_llm() -> Union[ChatOpenAI, LlamaCpp]:
         callback_manager=callback_manager,
         verbose=True,
         n_ctx=2048,
-        # input={"temperature": 0.0, "max_length": 2048},
     )
 
 

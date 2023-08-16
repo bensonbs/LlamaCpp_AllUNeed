@@ -20,13 +20,14 @@ def create_vectorstore(data, type):
     return FAISS.from_documents(documents=data, embedding=load_emb(type))
 
 def load_emb(type):
-    return LlamaCppEmbeddings(model_path=args.model_path, n_gpu_layers=35, n_batch=512, n_ctx=2048, f16_kv=True) if type == "llama" else OpenAIEmbeddings()
+    return LlamaCppEmbeddings(model_path=args.model_path, n_gpu_layers=43, n_batch=512, n_ctx=2048, f16_kv=True) if type == "llama" else OpenAIEmbeddings()
 
 if __name__ == '__main__':
     # Create the parser
     parser = argparse.ArgumentParser()
     parser.add_argument('--pdf-path', type=str, default="docs/*.pdf", help="Specify the path to the PDF files to process. You can use '*' to process all files in a directory.")
-    parser.add_argument('--embedding', type=str, default="openai", help="Choose the embeddings to use (default: 'openai'). Options: 'llama' or 'openai'.")
+    parser.add_argument('--model-path', type=str, default="./chinese-alpaca-2-13b/ggml-model-q4_0.bin", help="Specify the full path to the model file.")
+    parser.add_argument('--embedding', type=str, default="llama", help="Choose the embeddings to use (default: 'openai'). Options: 'llama' or 'openai'.")
     # Parse the arguments
     args = parser.parse_args()
     
