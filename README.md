@@ -15,7 +15,6 @@ Road Map
 ![DEMO](Demo_QA.png)
   
 ## 系統需求: 
-- UbuntuOS 22.04
 - GPU版本需使用Nvidia顯示卡且`vram >= 8GB`
 
 ## 使用 docker 啟動
