@@ -24,8 +24,8 @@ streamlit run qa.py -- --model openai  --embedding openai --hyperlink <bool>
 
 - `model`：指定用於處理的模型（默認：'llama'）。選項：'llama'或'openai'。
 - `model-path`：指定模型文件的完整路徑。(使用openai model可略過)
-- `embedding`：選擇要使用的嵌入（默認：'llama'）。選項：'llama'或'openai'。
-- `hyperlink`：是否在處理的PDF中包含超鏈接（默認：True）。使用'False'排除超鏈接。
+- `embedding`：選擇要使用的詞向量（默認：'llama'）。選項：'llama'或'openai'。
+- `hyperlink`：是否在處理的PDF中包含超鏈接（默認：False）。使用'True'啟用超鏈接。
   <details><summary>hyperlink 小工具</summary>
   <p>
 
@@ -49,9 +49,3 @@ streamlit run qa.py -- --model openai  --embedding openai --hyperlink <bool>
   ```
   </p>
   </details>
-
-## 使用案例
-Alpaca-2 ：Retrieval QA 的一個完美用例是用戶擁有大量的PDF文件，並在這些文檔中尋找特定的信息。而不是手動閱讀所有文件，用戶可以簡單地問AI獲取信息。AI將處理文檔，找到相關的信息，並提供簡潔的回答，所有這些都只需要幾秒鐘。
-
-## 注意事項
-此工具設計用於研究和開發目的，應負責任地使用。
