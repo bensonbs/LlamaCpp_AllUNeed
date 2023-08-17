@@ -48,7 +48,7 @@ docker run -d -it --gpus all -p 8501:8501 --name alpaca-chat alpaca-chat sh
 
 ### 3. (可選)使用參數`-v`設定共享`docs`資料夾
 ```
-docker run -d -it --gpus all -p 8501:8501 -v PATH/TO/docs:/LlamaCpp_AllUNeed/docs --name alpaca-qa alpaca-qa sh
+docker run -d -it --gpus all -p 8501:8501 -v PATH/TO/docs:/LlamaCpp_AllUNeed/docs --name alpaca-chat alpaca-chat sh
 ```
 
 ### 4. 進入 Docker 容器的終端
@@ -56,13 +56,13 @@ docker run -d -it --gpus all -p 8501:8501 -v PATH/TO/docs:/LlamaCpp_AllUNeed/doc
 docker exec -it alpaca-chat sh
 ```
 
-### 啟動Alpaca-2: Chat [文檔](Alpaca-2_Chat.md)
+啟動Alpaca-2: Chat [文檔](Alpaca-2_Chat.md)
 ```
 streamlit run chat.py
 ```
 
 
-### 啟動Alpaca-2: Retrieval QA [文檔](Retrieval_QA.md)
+啟動Alpaca-2: Retrieval QA [文檔](Retrieval_QA.md)
 ```
 streamlit run qa.py
 ```
@@ -80,7 +80,7 @@ streamlit run qa.py
     └─faiss
 ```
 
-#### 使用官方模型自己轉換型態
+#### 使用官方模型自己轉換型態(不推薦)
 模型下載[傳送門](https://huggingface.co/ziqingyang/chinese-alpaca-2-7b)
 #### llama.cpp 環境建置
 ```
@@ -101,13 +101,14 @@ python3 convert.py /path_to_model/chinese-alpaca-2-7b/
 
 ### 套件安裝
 
-#### CPU版本
 ```
-pip install  llama-cpp-python
+pip install -r requirement.txt
 ```
 
+#### CPU版本
+
 ```
-pip install langchain
+pip install  llama-cpp-python
 ```
 
 #### GPU版本
@@ -128,9 +129,6 @@ cmake --build . --config Release
 CMAKE_ARGS="-DLLAMA_CUBLAS=on" FORCE_CMAKE=1 pip install --upgrade --force-reinstall llama-cpp-python --no-cache-dir
 ```
 
-```
-pip install langchain
-```
 
 ## 參考資料
 - [Chinese-LLaMA-Alpaca](https://github.com/ymcui/Chinese-LLaMA-Alpaca)
