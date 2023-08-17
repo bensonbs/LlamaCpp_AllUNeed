@@ -5,7 +5,7 @@ Alpaca-2 ：Retrieval QA 的一個完美用例是用戶擁有大量的PDF文件�
 ### 詞向量處理
 將PDF切成chunk建立詞向量並儲存，用於日後檢索使用，如有第一次使用或新增PDF文件時執行。
 ```bash
-python emb.py --pdf-path path/to/*.pdf --embedding llama/openai
+python3 emb.py --pdf-path path/to/*.pdf --embedding llama/openai
 ```
 - `pdf-path`：指定要處理的PDF文件的路徑。您可以使用 '*' 處理目錄中的所有文件。
 - `embedding`：選擇要使用的嵌入（默認：'openai'）。選項：'llama'或'openai'。
