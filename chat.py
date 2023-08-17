@@ -129,7 +129,7 @@ def main() -> None:
     model_check()
     area = [st.sidebar.empty() for i in range(3)]
     st.sidebar.markdown("## Options")
-    llm = select_llm()
+    llm = load_llm()
     init_messages()
     
     area[0].markdown("""
