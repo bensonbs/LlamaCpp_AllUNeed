@@ -11,7 +11,7 @@ Road Map
 ![DEMO](Demo.png)
 
 ### Alpaca-2: Retrieval QA
-#### Alpaca-2: Retrieval QA 的一個完美用例是用戶擁有大量的PDF文件，並在這些文檔中尋找特定的信息。而不是手動閱讀所有文件，用戶可以簡單地問AI獲取信息。AI將處理文檔，找到相關的信息，並提供簡潔的回答，所有這些都只需要幾秒鐘。
+#### Alpaca-2: Retrieval QA 在大量的PDF文件中尋找特定的信息。用戶可以提問相關的問題，模型將提供簡潔的回答，所有這些都只需要幾秒鐘。
 ![DEMO](Demo_QA.png)
   
 ## 系統需求: 
