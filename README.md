@@ -32,13 +32,13 @@ CMD ["streamlit", "run", "chat.py"]  -> CMD ["streamlit", "run", "qa.py"]
 ```
 
 ```
-docker build -t alpaca-chat .
-docker run --gpus all -p 8501:8501 alpaca-chat
+docker build -t alpaca-qa .
+docker run --gpus all -p 8501:8501 alpaca-qa
 ```
 
-### 如果你已經有模型可以用`-v`設定共享目錄
+### 使用參數`-v`設定共享`docs`資料夾
 ```
-docker run --gpus all -p 8501:8501 -v PATH/TO/LlamaCpp_AllUNeed/chinese-alpaca-2-7b:/LlamaCpp_AllUNeed/chinese-alpaca-2-7b --name alpaca-chat alpaca-chat
+docker run --gpus all -p 8501:8501 -v PATH/TO/docs:/LlamaCpp_AllUNeed/docs --name alpaca-qa alpaca-qa
 ```
 
 ## 本地環境建置
