@@ -1,7 +1,8 @@
 streamlit
 opencc
 llama-cpp-python
-langchain==0.0.248
+langchain
 gdown
 pypdf
 openai
+tiktoken
