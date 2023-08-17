@@ -27,11 +27,10 @@ docker build -t alpaca-chat .
 ```
 
 ### 2. 由Docker啟動範例
-```
-docker run -d -it --gpus all -p 8501:8501 --name alpaca-chat alpaca-chat sh
-```
-這個命令會運行一個新的Docker容器：
 
+<details><summary>這個命令會運行一個新的Docker容器：</summary>
+<p>
+  
 - `-d`: 在後台運行容器。
 - `-it`: 以互動模式運行容器，並保持打開的終端。
 - `--gpus all`: 使用主機上的所有GPU。
@@ -39,12 +38,18 @@ docker run -d -it --gpus all -p 8501:8501 --name alpaca-chat alpaca-chat sh
 - `--name` alpaca-chat: 將容器命名為alpaca-chat。
 - `alpaca-chat`: 使用alpaca-chat映像來運行容器。
 - `sh`: 啟動容器時運行的命令。
+  
+</p>
+</details>
+
+```
+docker run -d -it --gpus all -p 8501:8501 --name alpaca-chat alpaca-chat sh
+```
 
 ### 3. (可選)使用參數`-v`設定共享`docs`資料夾
 ```
 docker run -d -it --gpus all -p 8501:8501 -v PATH/TO/docs:/LlamaCpp_AllUNeed/docs --name alpaca-qa alpaca-qa sh
 ```
-- `-v` PATH/TO/docs:/LlamaCpp_AllUNeed/docs: 將主機上的PATH/TO/docs資料夾映射到容器中的/LlamaCpp_AllUNeed/docs資料夾。
 
 ### 4. 進入 Docker 容器的終端
 ```
