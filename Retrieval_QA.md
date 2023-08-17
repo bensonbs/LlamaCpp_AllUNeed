@@ -6,6 +6,8 @@ Alpaca-2 ：Retrieval QA 的一個完美用例是用戶擁有大量的PDF文件�
 
 ⚠️ **注意: `LLama`詞向量檢索不夠精準，實際使用建議使用`openai`**
 
+![pic](QA_flow.png)
+
 ### 詞向量處理
 將PDF切成chunk建立詞向量並儲存，用於日後檢索使用，如有第一次使用或新增PDF文件時執行。
 
