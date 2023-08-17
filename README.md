@@ -51,19 +51,19 @@ docker run -d -it --gpus all -p 8501:8501 -v PATH/TO/docs:/LlamaCpp_AllUNeed/doc
 docker exec -it alpaca-chat sh
 ```
 
-### 啟動Alpaca-2: Chat [文檔](Alpaca-2_Chat.md)
+## 啟動Alpaca-2: Chat [文檔](Alpaca-2_Chat.md)
 ```
 streamlit run chat.py
 ```
 
 
-### 啟動Alpaca-2: Retrieval QA [文檔](Retrieval_QA.md)
+## 啟動Alpaca-2: Retrieval QA [文檔](Retrieval_QA.md)
 ```
 streamlit run qa.py
 ```
 
 
-## 本地環境建置
+## 由本地環境建置(不推薦)
 
 ### 模型下載
 #### 直接下載chinese-alpaca-2-7b 4bit量化模型 [GoogleDrive](https://drive.google.com/file/d/1bk2-n2fncZ8XSg_G6PIGfhZMqghfn482/view?usp=sharing)
