@@ -140,13 +140,6 @@ def main() -> None:
     """)
     area[1].markdown("""
     - **Source Code** [Github](https://github.com/bensonbs/LlamaCpp_AllUNeed)
-    - **weight 4bit** [Link](https://drive.google.com/file/d/1bk2-n2fncZ8XSg_G6PIGfhZMqghfn482/view?usp=sharing)
-    """)
-    area[2].markdown("""
-    **reference:**
-    - [Chinese-LLaMA-Alpaca](https://github.com/ymcui/Chinese-LLaMA-Alpaca)
-    - [llama.cpp](https://github.com/ggerganov/llama.cpp)
-    - [streamlit Chat UI](https://medium.com/@daydreamersjp/implementing-locally-hosted-llama2-chat-ui-using-streamlit-53b181651b4e)
     """)
     # Supervise user input
     if user_input := st.chat_input("Input your question!"):
