@@ -56,13 +56,13 @@ docker run -d -it --gpus all -p 8501:8501 -v PATH/TO/docs:/LlamaCpp_AllUNeed/doc
 docker exec -it alpaca-chat sh
 ```
 
-啟動Alpaca-2: Chat [文檔](Alpaca-2_Chat.md)
+**啟動 Alpaca-2: Chat** [文檔](Alpaca-2_Chat.md)
 ```
 streamlit run chat.py
 ```
 
 
-啟動Alpaca-2: Retrieval QA [文檔](Retrieval_QA.md)
+**啟動 Alpaca-2: Retrieval QA** [文檔](Retrieval_QA.md)
 ```
 streamlit run qa.py
 ```
