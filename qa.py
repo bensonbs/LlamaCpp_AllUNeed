@@ -23,7 +23,21 @@ def load_emb(type):
 def load_model(type):
     return LlamaCpp(model_path=args.model_path, n_gpu_layers=43, n_batch=512, verbose=True, n_ctx=2048) if type == 'llama' else ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
 
+def model_check():
+    import os
+    import gdown
 
+    output_path = './chinese-alpaca-2-7b/ggml-model-q4_0.bin'
+
+    # 只在檔案不存在時下載
+    if not os.path.exists(output_path):
+        # 確認並創建目錄
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+        # 下載檔案
+        gdown.download('https://drive.google.com/uc?id=1bk2-n2fncZ8XSg_G6PIGfhZMqghfn482', output_path, quiet=False)
+
+model_check()
 # Create the parser
 parser = argparse.ArgumentParser()
 
