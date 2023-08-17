@@ -1,26 +1,26 @@
 # Alpaca-2：Retrieval QA
 Alpaca-2 ：Retrieval QA 的一個完美用例是用戶擁有大量的PDF文件，並在這些文檔中尋找特定的信息。而不是手動閱讀所有文件，用戶可以簡單地問AI獲取信息。AI將處理文檔，找到相關的信息，並提供簡潔的回答，所有這些都只需要幾秒鐘。
 ## 如何使用
+⚠️ **注意:選用openai model或embedding 需添加環境變數 `export OPENAI_API_KEY=`**
 
 ### 詞向量處理
 將PDF切成chunk建立詞向量並儲存，用於日後檢索使用，如有第一次使用或新增PDF文件時執行。
 ```bash
-python3 emb.py --pdf-path path/to/*.pdf --embedding llama/openai
+python3 emb.py --embedding openai
 ```
-- `pdf-path`：指定要處理的PDF文件的路徑。您可以使用 '*' 處理目錄中的所有文件。
-- `embedding`：選擇要使用的嵌入（默認：'openai'）。選項：'llama'或'openai'。
+- `embedding`：選擇要使用的嵌入（默認：'llama'）。選項：'llama'或'openai'。
 
 結束後將會儲存`faiss/openai_index`或是`faiss/llama_index`
 
 **注意:選用openai embedding 需添加環境變數 `export OPENAI_API_KEY=`**
 ### 啟動 Retrieval QA
 ```bash
-streamlit run qa.py -- --model <model_name> --model-path <model_path> --embedding <embedding> --hyperlink <bool>
+streamlit run qa.py -- --model openai  --embedding openai --hyperlink <bool>
 ```
 
 - `model`：指定用於處理的模型（默認：'llama'）。選項：'llama'或'openai'。
-- `model-path`：指定模型文件的完整路徑。(使用openai model與embedding可略過)
-- `embedding`：選擇要使用的嵌入（默認：'openai'）。選項：'llama'或'openai'。
+- `model-path`：指定模型文件的完整路徑。(使用openai model可略過)
+- `embedding`：選擇要使用的嵌入（默認：'llama'）。選項：'llama'或'openai'。
 - `hyperlink`：是否在處理的PDF中包含超鏈接（默認：True）。使用'False'排除超鏈接。
   <details><summary>hyperlink 小工具</summary>
   <p>
@@ -45,8 +45,6 @@ streamlit run qa.py -- --model <model_name> --model-path <model_path> --embeddin
   ```
   </p>
   </details>
-
-**注意:選用openai model或embedding 需添加環境變數 `export OPENAI_API_KEY=`**
 
 ## 使用案例
 Alpaca-2 ：Retrieval QA 的一個完美用例是用戶擁有大量的PDF文件，並在這些文檔中尋找特定的信息。而不是手動閱讀所有文件，用戶可以簡單地問AI獲取信息。AI將處理文檔，找到相關的信息，並提供簡潔的回答，所有這些都只需要幾秒鐘。
