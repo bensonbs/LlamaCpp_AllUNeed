@@ -11,7 +11,7 @@ Road Map
 ![DEMO](Demo.png)
 
 ### Alpaca-2: Retrieval QA
-#### Alpaca-2: Retrieval QA 在大量的PDF文件中尋找特定的信息。用戶可以提問相關的問題，模型將提供簡潔的回答，所有這些都只需要幾秒鐘。
+#### 此專案在大量的PDF文件中尋找特定的訊息。用戶可以提問相關的問題，模型將提供簡潔的回答，所有這些都只需要幾秒鐘。
 ![DEMO](Demo_QA.png)
   
 ## 系統需求: 
