@@ -35,7 +35,6 @@ LlamaCpp(
         n_batch=n_batch,
         callback_manager=callback_manager,
         verbose=True,
-        input={"temperature": 0.0, "max_length": 2048},
     )
 ```
 
