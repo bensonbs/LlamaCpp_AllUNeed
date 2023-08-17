@@ -6,11 +6,11 @@ Road Map
 - [x] Alpaca-2: Chat
 
 ## 效果演示
-### Alpaca-2: Chat [文檔](Alpaca-2_Chat.md)
+### Alpaca-2: Chat
 #### 此專案提供一個 Streamlit 介面，讓你可以運行 `Alpaca-2` 與模型進行對話。
 ![DEMO](Demo.png)
 
-### Alpaca-2: Retrieval QA [文檔](Retrieval_QA.md)
+### Alpaca-2: Retrieval QA
 #### Alpaca-2: Retrieval QA 的一個完美用例是用戶擁有大量的PDF文件，並在這些文檔中尋找特定的信息。而不是手動閱讀所有文件，用戶可以簡單地問AI獲取信息。AI將處理文檔，找到相關的信息，並提供簡潔的回答，所有這些都只需要幾秒鐘。
 ![DEMO](Demo_QA.png)
   
@@ -19,27 +19,49 @@ Road Map
 - GPU版本需使用Nvidia顯示卡且`vram >= 8GB`
 
 ## 使用 docker 啟動
-### 啟動Alpaca-2: Chat
+
+### 1. 建立 Docker 映像
+這個命令會使用當前目錄下的Dockerfile來建立一個新的Docker映像並命名為alpaca-chat。
 ```
 docker build -t alpaca-chat .
-docker run --gpus all -p 8501:8501 alpaca-chat
 ```
 
-### 啟動Alpaca-2: Retrieval QA
-更改`Dockerfile` 即可
+### 2. 啟動 Docker 容器
 ```
-CMD ["streamlit", "run", "chat.py"]  -> CMD ["streamlit", "run", "qa.py"]
+docker run -d -it --gpus all -p 8501:8501 --name alpaca-chat alpaca-chat sh
 ```
+這個命令會運行一個新的Docker容器：
 
-```
-docker build -t alpaca-qa .
-docker run -d -it --gpus all -p 8501:8501 --name alpaca-qa alpaca-qa sh
-```
+- `-d`: 在後台運行容器。
+- `-it`: 以互動模式運行容器，並保持打開的終端。
+- `--gpus all`: 使用主機上的所有GPU。
+- `-p` 8501:850': 將容器的8501端口映射到主機的8501端口。
+- `--name` alpaca-chat: 將容器命名為alpaca-chat。
+- `alpaca-chat`: 使用alpaca-chat映像來運行容器。
+- `sh`: 啟動容器時運行的命令。
 
-### 使用參數`-v`設定共享`docs`資料夾
+### 3. (可選)使用參數`-v`設定共享`docs`資料夾
 ```
 docker run -d -it --gpus all -p 8501:8501 -v PATH/TO/docs:/LlamaCpp_AllUNeed/docs --name alpaca-qa alpaca-qa sh
 ```
+- `-v` PATH/TO/docs:/LlamaCpp_AllUNeed/docs: 將主機上的PATH/TO/docs資料夾映射到容器中的/LlamaCpp_AllUNeed/docs資料夾。
+
+### 4. 進入 Docker 容器的終端
+```
+docker exec -it alpaca-chat sh
+```
+
+### 啟動Alpaca-2: Chat [文檔](Alpaca-2_Chat.md)
+```
+streamlit run chat.py
+```
+
+
+### 啟動Alpaca-2: Retrieval QA [文檔](Retrieval_QA.md)
+```
+streamlit run qa.py
+```
+
 
 ## 本地環境建置
 
