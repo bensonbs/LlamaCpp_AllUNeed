@@ -17,7 +17,7 @@ Road Map
 ## 系統需求: 
 - GPU版本需使用Nvidia顯示卡且`vram >= 8GB`
 
-## 使用 docker 啟動
+## 使用 Docker 啟動
 
 ### 1. 建立 Docker 映像
 這個命令會使用當前目錄下的Dockerfile來建立一個新的Docker映像並命名為alpaca-chat。
