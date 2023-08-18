@@ -95,7 +95,7 @@ python3 convert.py /path_to_model/chinese-alpaca-2-7b/
 
 模型精度轉換 f16 -> q4
 ```
-./quantize /path_to_model/chinese-alpaca-2-7b/ggml-model-f16.bin /path_to_model/chinese-alpaca-2-7b/gml-model-q4_0.bin q4_0
+./quantize /path_to_model/chinese-alpaca-2-7b/ggml-model-f16.bin /path_to_model/chinese-alpaca-2-7b/ggml-model-q4_0.bin q4_0
 ```
 
 ### 套件安裝
