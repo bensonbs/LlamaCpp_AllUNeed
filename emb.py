@@ -26,7 +26,7 @@ if __name__ == '__main__':
     # Create the parser
     parser = argparse.ArgumentParser()
     parser.add_argument('--pdf-path', type=str, default="docs/*.pdf", help="Specify the path to the PDF files to process. You can use '*' to process all files in a directory.")
-    parser.add_argument('--model-path', type=str, default="./chinese-alpaca-2-13b/ggml-model-q4_0.bin", help="Specify the full path to the model file.")
+    parser.add_argument('--model-path', type=str, default="./chinese-alpaca-2-7b/ggml-model-q4_0.bin", help="Specify the full path to the model file.")
     parser.add_argument('--embedding', type=str, default="llama", help="Choose the embeddings to use (default: 'openai'). Options: 'llama' or 'openai'.")
     # Parse the arguments
     args = parser.parse_args()
